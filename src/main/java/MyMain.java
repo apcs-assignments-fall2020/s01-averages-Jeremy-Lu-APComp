@@ -1,3 +1,7 @@
+//Currently, the mode method does not completely work - I tried iterating through the array and keeping
+//track of each numnber frequency as individual variables but I didn't consider that any number
+//can be put in the 2D Array.
+
 public class MyMain {
 
     // Returns the mean of the 2D array mat
@@ -33,14 +37,34 @@ public class MyMain {
     
 
     // Returns the mode of the 2D array mat
-    public static double mode(double[][] mat) { 
-        // How many times result occurs
-        // How many times number looking at occurs
-        // Hold index - Calculate [i] and [j] pair from index
-        // Reset
-        return -1.0;
+    public static double mode(double[][] mat) {
+    int mode_val = 0;
+    int zero = 0;
+    int one = 0;
+    int two = 0;
+    int three = 0; //this doesn't work the way I thought it would work
+    for(int i = 0; i <mat.length;i++){
+        for(int j = 0; j <mat[0].length; j++){
+            int temp_val = mat[i][j]; //iterates through the array (lossy conversion)
+            if (temp_val == 0){
+                zero++;
+            }
+            else if (temp_val == 1){
+                one++;
+            }
+            else if (temp_val == 2){
+                two++;
+            }
+            else if (temp_val == 3){
+                three++;
+            }
+            else{
+                return null;
+            }
+        }
     }
-
+    return mode_val;
+    } //not entirely sure how to finish this (will ask in class)
 
     public static void main(String[] args) {
         double[][] mat_1 = { // odd len
@@ -59,8 +83,10 @@ public class MyMain {
         double average = mean(mat_1);
         double median_num = median(mat_1);
         double median_even = median(mat_even);
+        double mode = mode(mat_1);
         System.out.println("Average = " + average);
         System.out.println("Median = " + median_num); 
         System.out.println("Median (even test) = " + median_even); 
+        System.out.println("Mode = " + mode); //This currently doesn't operate
     }
 }
